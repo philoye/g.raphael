@@ -61,13 +61,15 @@ Raphael.fn.g.piechart = function (cx, cy, r, values, opts) {
         len = Math.min(cut + 1, values.length);
         others && values.splice(len) && (values[cut].others = true);
         for (var i = 0; i < len; i++) {
-            var mangle = angle - 360 * values[i] / total / 2;
+            var default_mangle = angle - 360 * values[i] / total
+            var override_start_angle = function(a) { return opts.start_angle + a || a / 2 };
+            var mangle = override_start_angle(default_mangle);
             if (!i) {
                 angle = 90 - mangle;
-                mangle = angle - 360 * values[i] / total / 2;
+                mangle = override_start_angle(default_mangle);
             }
             if (opts.init) {
-                var ipath = sector(cx, cy, 1, angle, angle - 360 * values[i] / total).join(",");
+                var ipath = sector(cx, cy, 1, angle, default_mangle).join(",");
             }
             var path = sector(cx, cy, r, angle, angle -= 360 * values[i] / total);
             var p = this.path(opts.init ? ipath : path).attr({fill: opts.colors && opts.colors[i] || this.g.colors[i] || "#666", stroke: opts.stroke || "#fff", "stroke-width": (opts.strokewidth == null ? 1 : opts.strokewidth), "stroke-linejoin": "round"});

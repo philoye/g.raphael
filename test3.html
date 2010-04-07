@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <title>gRaphaël Static Pie Charts</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="author" content="Dmitry Baranovskiy">
+        <meta name="description" content="Charting JavaScript Library">
+        <link rel="stylesheet" href="demo.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="demo-print.css" type="text/css" media="print" charset="utf-8">
+        <script src="../raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="g.raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="g.pie.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+          window.onload = function () {
+            var r = Raphael("holder", 640, 480);
+            r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+
+            r.g.text(250, 20, "Simple Bar Chart");
+
+            r.g.text(100, 50, "Default rotation");
+            r.g.piechart(100, 140, 75, [70, 20, 10]);
+
+            r.g.text(400, 50, "start from 0 degrees");
+            r.g.piechart(400, 140, 75, [70, 20, 10], { start_angle: 0 });
+            
+            r.g.text(100, 280, "start from 90 degrees");
+            r.g.piechart(100, 370, 75, [70, 20, 10], { start_angle: 90 });
+            
+            r.g.text(400, 280, "start from 180 degrees");
+            r.g.piechart(400, 370, 75, [70, 20, 10], { start_angle: 180 });
+          };
+        </script>
+    </head>
+    <body class="raphael" id="g.raphael.dmitry.baranovskiy.com">
+        <div id="holder"></div>
+        <p>
+            Demo of <a href="http://g.raphaeljs.com/">gRaphaël</a> JavaScript library.
+        </p>
+    </body>
+</html>
